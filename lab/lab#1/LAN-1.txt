@@ -1,0 +1,26 @@
+//
+// LAN-1: a topology file with one server and 5 clients connected by an
+// 	  Ethernet local area network
+//
+
+compile = "lab1.c"
+
+mapwidth=200m, mapheight=150m, mapgrid= 50m, mapscale= 0.3
+
+minmessagesize= 1000bytes
+maxmessagesize= 1000bytes
+
+lan-probframecorrupt= 0
+
+messagerate= 1000ms
+
+lansegment LAB1 { x= 50, y= 75, lan-bandwidth= 10Mbps }
+
+host server { y= 50, address= 200, lan to LAB1 { } }
+
+host c1 { y= 100, address= 101, lan to LAB1 { } }
+host c2 { y= 100, address= 102, lan to LAB1 { } }
+host c3 { y= 100, address= 103, lan to LAB1 { } }
+host c4 { y= 100, address= 104, lan to LAB1 { } }
+host c5 { y= 100, address= 105, lan to LAB1 { } }
+

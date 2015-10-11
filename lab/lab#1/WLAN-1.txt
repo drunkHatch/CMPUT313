@@ -1,0 +1,25 @@
+//
+// WLAN-1: a topology file with one server and 5 clients connected by a
+// 	   wireless local area network
+//
+
+compile = "lab1.c"
+
+mapwidth=200m, mapheight=150m, mapgrid= 50m, mapscale= 0.3
+
+minmessagesize= 1000bytes
+maxmessagesize= 1000bytes
+
+
+wlan-bandwidth= 128000bps
+wlan-probframecorrupt= 0
+
+messagerate= 1000ms
+
+mobile server { x=100, y=50, address= 200, wlan { } }
+
+mobile c1 { x=  50, y= 100, address= 101, wlan { } }
+mobile c2 { x=  75, y= 100, address= 102, wlan { } }
+mobile c3 { x= 100, y= 100, address= 103, wlan { } }
+mobile c4 { x= 125, y= 100, address= 104, wlan { } }
+mobile c5 { x= 150, y= 100, address= 105, wlan { } }

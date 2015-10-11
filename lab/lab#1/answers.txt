@@ -1,0 +1,69 @@
+/*
+	CMPUT 313
+	Lab #1
+	Wei Song
+	1413835
+*/
+
+Part 1
+
+1.
+"CnetAddr", "CnetColour", "CnetData", "CnetRandom", "CneTime" and "CnetTimerID"are neither C structures nor enumerated data types.
+
+"CnetColour", "CnetTime", "CnetData" and "CnetRandom" are not equivalent to the int data type in the lab machines.
+
+2.
+The current time in cnet is in the global integer variable "nodeinfo.time_in_usec".
+
+printf("time = %s usecs\n", CNET_format64(nodeinfo.time_in_usec));
+
+3.
+cnet.h can specify the structure of the application layer. However, it cannot specify the content and format.
+
+4.
+If there is an error occurs, the program will tell you which line and which place you have an error.
+
+You can use 
+    printf("The error message was: %s", cnet_errstr[cnet_errno]);
+to handle the API error.
+
+5.
+FRAME_SIZE(f) can be different from sizeof(f) since it depends on the bits packing and MAX_MESSAGE_SIZE.
+
+6.
+Yes, it does. CNET_ccitt function will send "f.checksum".
+f.checksum = CNET_ccitt((unsigned char *)&f, (int)length);
+
+7.
+lasttimer = CNET_start_timer(EV_TIMER1, 3 * timeout, 0); will be called when data is tranmitted in the transmitted layer and the timer will start.
+
+CNET_stop_timer(lasttimer); will be called if data arrives at physical_ready.
+
+Part 2
+
+PROGRAM REPORT
+
+Design Overview:
+This program uses two event handlers which are "application_ready" and "physical ready".
+One sever recieves message and all users send message.
+The "application_ready" will be called firstly to read application layer and write to the physical layer which send out message.
+Then "physical_ready" will be called to read from the physical layer and write to the application layer which recieve the message.
+In the EVENT_HANDLER, set the sever node to 200 and all other nodes should not read physical layer because they do not get any message. Only the sever can recieve the message.
+
+Program Status:
+At first, I changed the name to lab1.c from TOPOLOGY.c from the first lab. I tried to run in the terminal "cnet LAN-1" and it can be ran, but there was no message recieved in the sever. I fixed it by putting a printf statement in the "application_ready" function. Another problem occured which was users also recieved message. To avoid it, I put a condition in the "EVENT_HANDLER" to make sure only the sever can receive message from users.
+
+Findings:
+
+1.
+There are 474 messgaes at the first time and 508 messages at the second time. After several run times, the application layer messages are successfully received
+by the server does not change significantly even if wan-banwidth is doubled. I think the reason causes this because there are no such that amount users and the wan-bandwidth will not be fully used.
+
+2.
+When changing "probframecorrupt=1", "CNET_write_application" causes error. The erros are ER_MISSINGMSG and ER_CORRUPTFRAME.
+
+3.
+For WLAN-1, it also causes error which is "CNET_write_application" and the errors are ER_MISSINGMSG and ER_CORRUPTFRAME.
+
+Acknowledgements:
+Code in cnet and More practice with CNET on the eclass.
