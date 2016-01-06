@@ -1,0 +1,7 @@
+
+compile	= "flooding3.c dll_basic.c nl_table.c"
+
+propagationdelay =  100ms
+messagerate	 = 1000ms
+
+#include "WORLD.MAP"

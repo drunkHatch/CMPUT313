@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+DURATION="10mins"
+EVERY="10"			# seconds
+#
+rm -f result.flood*
+#
+for f in 1 2 3
+do
+    cnet -W -q -T -e $DURATION -s -f ${EVERY}secs FLOODING$f	| \
+    grep 'Efficiency'						| \
+    cut -d: -f 2						| \
+    awk "{ printf(\"%d %s\n\", ++i * $EVERY, \$1); }"		> result.flood$f
+done

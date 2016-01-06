@@ -1,0 +1,21 @@
+compile			= "stopandwait.c"
+
+bandwidth		= 56Kbps,
+
+messagerate             = 1000ms,
+propagationdelay        = 2500ms,
+
+minmessagesize		= 2000bytes,
+maxmessagesize		= 2000bytes,
+
+host perth {
+    x=100 y=50
+    winx=0, winy=50
+    link to sydney {
+    }
+}
+
+host sydney {
+    east east east east of perth
+    winx=550, winy=50
+}

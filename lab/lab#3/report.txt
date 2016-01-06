@@ -1,0 +1,73 @@
+/*
+CMPUT 313
+Lab #3
+Wei Song
+1413835
+*/
+
+Objectives:
+This programming assignment is intended to give you more experience with understanding, developing, and simulating distributed routing algorithms using the cnet discrete event simulation environment. As well, the assignment gives experience with obtaining simulation results suitable for plotting performance graphs for the developed algorithms.
+
+
+Part1
+
+1. ALL_LINKS & ~(1<<arrived_on) computes all links except the one which packet arrived. It transmits the link int number to bin. ALL_LINKS & ~(1<<arrived_on) will return 0 if the current link is less than the total link.
+
+2. seqno and MAXHOPS. Initial values: seqno = 0, MAXHOPS = 4. For seqno, it calls funcion NL_nextpackettosend(p.dest). For MAXHOPS, it defines at the beginning, #define	MAXHOPS		4.
+
+3. To test in over the range [1,4], I changed MAXHOPS from 1 to 4. I choose Frames transmitted, Frames received and Efficiency to see the performance of different number of MAXHOPS. As I run global statistic, the Frames transmitted statistic is growing quickly as the MAXHOPS increases, from MAXHOPS = 1: 2416 to MAXHOPS = 4: 3393. However, for the Frames received statistic grows much slower than Frames transmitted, from MAXHOPS = 1: 2376 to MAXHOPS = 4: 2701. Therefore, for the efficiency, less number of MAXHOPS has a higher efficiency. In conclusion, different number of MAXHOPS has an effect of THE PERFORMANCE OF THE ALGORITHM.
+
+4. 
+I test N10 for part(a) and N20 for part(b). As I observed, the Efficiency of N10 decreases as time goes by, but for N20, the efficiency increases while running for a longer time. N20 has a much more efficiency than N10. There is no API errors for N20 and Messages delivered for N20 has a larger amount than N10. The reason causes this is because the comment line "CNET_disable_application". N20 will check if the application is disable. It can increase the success rate Messages delivered and that is why it is more efficient.
+
+5.
+(a)
+If the node has not previously received a frame with a matching source address, the frame will be stored in minhop table right way.
+
+(b)
+If the node has previously received a frame with a matching source address, it will compare the hopcount and minhop and then save to the minhop table.
+
+(c)
+If the node has previously received a frame with a matching destination address, it will send to the minhoplink has been recorded before if has the same frame. Otherwise, it will send to all other hops.
+
+
+Part2
+7.
+(b)
+flooding2.c
+			10min			30min
+N = 10
+probframeloss=0:      (333,290)		       (1017,972)
+probframeloss=1:      (111,58)		       (107,51)
+
+N = 15
+probframeloss=0:      (417,318)		       (916,812)
+probframeloss=1:      (244,103)		       (247,93)
+
+lab3.c
+N = 10
+probframeloss=0:       (203,162)               (246,212)
+probframeloss=1:       (127,118)	       (125,123)
+
+N = 15
+probframeloss=0:       (325,250)	        (422,338)
+probframeloss=1:       (272,236)		(279,270)
+
+
+Design Overview:
+       - can terminate too busy error
+       - easier to debug since adding more "printf" statement
+       - See more details of the timmer information
+       - More efficient than flooding2
+       - There should be no frame loss for lab3.c
+
+Project Status:
+I follow the instruction given in the lab to design my program. My designed program is more efficient than the given flooding2.c. The difficulities I bumped are DEBUG1 Events handling and PERIODIC Events. DEBUG1 Events ask for print a list of infromation of the timers. I did not know how to call and to get values at the beginning. Especially the one that prints the timer identifier. Then I created a class which calls CNET_start_timer to record the timer identifier and it worked. For the PERIODIC Events, I did not know how to set up. I tried to set up like other handlers and luckly it worked.
+
+
+Testing and Results:
+I test FLOODING1, FLOODING2 and FLOODING3 many times. As the default settings in these three FLOODING, which compile flooding1.c, flooding2.c and flooding3.c. I test by the global statistic. The result I get is there is not a big difference of performance with flooding1 and flooding2. However, for flooding3, the efficiency improves dramaticlly which can reach 65%. After I implemented flooding2.c to lab3.c, the efficiency jumps from 8% to about 12% which is more efficient. I tested lab3.c and got those Messages generated and Messages delivered statistics. The reason they are not same I think is not frame loss, but some packets corrupt during the transmitting.
+
+Acknowledgments:
+Frame Relay defination from: https://en.wikipedia.org/wiki/Frame_Relay
+Flooding defination from: http://baike.baidu.com/link?url=0gzKYhZ4BcAy6_362HBRrTSsh2hb6ZWNdRLoNCy2ImEsrSusVLaXDGgsMjilpnNGVHLLSFR9TWeWinbvqv6MRK (Chinese version)

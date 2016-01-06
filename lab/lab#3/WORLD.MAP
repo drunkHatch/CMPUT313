@@ -1,0 +1,169 @@
+
+/* ---------------- some central hosts with fast links ------------ */
+
+host sydney {
+    x=550, y=530
+    link to HongKong	{ propagationdelay = 20ms }
+    link to hobart
+    link to melbourne
+}
+
+host Berkeley {
+    x=815, y=160
+    link to HongKong	{ propagationdelay  = 20ms }
+    link to hawaii
+    link to NewYork
+}
+
+host HongKong {
+    x=440, y=240
+    link to sydney	{ propagationdelay = 20ms }
+    link to london	{ propagationdelay = 20ms }
+    link to Berkeley	{ propagationdelay = 20ms }
+    link to singapore
+    link to tokyo
+}
+
+host london {
+    x=50, y=150
+    link to HongKong	{ propagationdelay = 20ms }
+    link to singapore
+}
+
+/* --------------- then some other hosts with slower links -------- */
+
+host perth {
+    x=380, y=530
+    link to melbourne
+    link to singapore
+}
+host melbourne {
+    x=460, y=530
+    link to perth
+    link to sydney
+    link to hobart
+}
+host hobart {
+    x=510, y=600
+    link to sydney
+    link to melbourne
+}
+host brisbane {
+    x=555, y=450
+    link to sydney
+}
+host singapore {
+    x=360, y=380
+    link to perth
+    link to hongkong
+}
+host wellington {
+    x=655, y=545
+    link to sydney
+}
+host auckland {
+    x=640, y=490
+    link to wellington
+}
+host christchurch {
+    x=630, y=600
+    link to wellington
+}
+host HatYai {
+    x=325, y=310
+    link to singapore
+}
+host bangkok {
+    x=360, y=260
+    link to HongKong
+    link to singapore
+}
+host NewDelhi {
+    x=210, y=360
+    link to singapore
+}
+host tokyo {
+    x=490, y=190
+    link to HongKong
+}
+host beijing {
+    x=430, y=140
+    link to HongKong
+}
+host rome {
+    x=175, y=205
+    link to london
+}
+host paris {
+    x=150, y=140
+    link to london
+}
+host moscow {
+    x=205, y=100
+    link to london
+}
+host siberia {
+    x=400, y=35
+    link to moscow
+}
+host edinburgh {
+    x=40, y=85
+    link to london
+}
+host hawaii {
+    x=700, y=250
+    link to sydney
+}
+host Disneyland {
+    x=815, y=230
+    link to hawaii
+    link to Berkeley
+}
+host NewYork {
+    x=1000, y=160
+    link to Berkeley
+    link to GrassyKnoll
+}
+host miami {
+    x=1000, y=260
+    link to NewYork
+}
+host toronto {
+    x=960, y=115
+    link to NewYork
+}
+host waterloo {
+    x=900, y=115
+    link to toronto
+}
+host montreal {
+    x=1000, y=70
+    link to toronto
+}
+host vancouver {
+    x=790, y=70
+    link to Berkeley
+}
+host cicely {
+    x=750, y=30
+    link to vancouver
+}
+host GrassyKnoll {
+    x=915, y=220
+    link to Berkeley
+    link to NewYork
+}
+host BuenosAires {
+    x=970, y=460
+    link to auckland
+    link to Disneyland
+}
+host johannesburg {
+    x=45, y=560
+    link to perth
+}
+host harare {
+    x=90, y=480
+    link to perth
+    link to johannesburg
+}

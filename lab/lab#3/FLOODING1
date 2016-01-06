@@ -1,0 +1,7 @@
+messagerate      = 200ms,
+propagationdelay = 100ms,
+bandwidth	 = 56Kbps,
+
+compile		 = "flooding1.c dll_basic.c nl_table.c"
+
+#include "AUSTRALIA.MAP"

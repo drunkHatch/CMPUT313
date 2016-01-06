@@ -1,0 +1,132 @@
+/* global attributes */
+
+/* default node attributes */
+compile                  = "lab3.c dll_basic.c nl_table.c"
+rebootfunc               = "reboot_node"
+nodemtbf                 = 0usec		/* will not fail */
+nodemttr                 = 0usec		/* instant repair */
+messagerate              = 1000000usec
+minmessagesize           = 48bytes
+maxmessagesize           = 32768bytes
+
+/* default WAN attributes */
+wan-bandwidth            = 56000bps
+wan-mtu                  = 33792bytes
+wan-jitter               = 0usec
+wan-propagationdelay     = 100000usec
+wan-linkmtbf             = 0usec		/* will not fail */
+wan-linkmttr             = 0usec		/* instant repair */
+wan-costperbyte          = 0
+wan-costperframe         = 0
+wan-probframecorrupt     = 0
+wan-probframeloss        = 1
+
+host host0 {
+    x=50, y=50
+
+    wan to host2 {	/* wan0 */
+    }
+    wan to host1 {	/* wan1 */
+    }
+}
+
+host host1 {
+    x=50, y=125
+
+    wan to host2 {	/* wan0 */
+    }
+    wan to host0 {	/* wan1 */
+    }
+    wan to host4 {	/* wan2 */
+    }
+}
+
+host host2 {
+    x=125, y=125
+
+    wan to host1 {	/* wan0 */
+    }
+    wan to host5 {	/* wan1 */
+    }
+    wan to host0 {	/* wan2 */
+    }
+    wan to host4 {	/* wan3 */
+    }
+}
+
+host host3 {
+    x=200, y=125
+
+    wan to host6 {	/* wan0 */
+    }
+}
+
+host host4 {
+    x=50, y=200
+
+    wan to host5 {	/* wan0 */
+    }
+    wan to host2 {	/* wan1 */
+    }
+    wan to host7 {	/* wan2 */
+    }
+    wan to host1 {	/* wan3 */
+    }
+}
+
+host host5 {
+    x=125, y=200
+
+    wan to host6 {	/* wan0 */
+    }
+    wan to host2 {	/* wan1 */
+    }
+    wan to host4 {	/* wan2 */
+    }
+    wan to host7 {	/* wan3 */
+    }
+}
+
+host host6 {
+    x=275, y=200
+
+    wan to host5 {	/* wan0 */
+    }
+    wan to host3 {	/* wan1 */
+    }
+    wan to host8 {	/* wan2 */
+    }
+    wan to host9 {	/* wan3 */
+    }
+}
+
+host host7 {
+    x=125, y=275
+
+    wan to host8 {	/* wan0 */
+    }
+    wan to host5 {	/* wan1 */
+    }
+    wan to host4 {	/* wan2 */
+    }
+}
+
+host host8 {
+    x=200, y=275
+
+    wan to host7 {	/* wan0 */
+    }
+    wan to host9 {	/* wan1 */
+    }
+    wan to host6 {	/* wan2 */
+    }
+}
+
+host host9 {
+    x=275, y=275
+
+    wan to host8 {	/* wan0 */
+    }
+    wan to host6 {	/* wan1 */
+    }
+}

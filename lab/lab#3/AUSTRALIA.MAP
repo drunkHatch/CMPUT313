@@ -1,0 +1,43 @@
+
+mapimage	 = "australia.gif"
+
+host Perth {
+    x=80, y=290
+    link to Adelaide 
+}
+host Canberra {
+    x=440, y=320
+    link to Melbourne 
+    link to Sydney 
+}
+host Melbourne {
+    x=420, y=390
+    link to Canberra 
+    link to Sydney 
+    link to Hobart 
+}
+host Sydney {
+    x=510, y=320
+    link to Canberra 
+    link to Melbourne 
+    link to Hobart 
+    link to Brisbane 
+}
+host Hobart {
+    x=450, y=460
+    link to Melbourne 
+    link to Sydney 
+}
+host Brisbane {
+    x=520, y=220
+    link to Sydney 
+}
+host Adelaide {
+    x=330, y=310
+    link to Melbourne 
+    link to Darwin 
+}
+host Darwin {
+    x=280, y=50
+    link to Adelaide 
+}

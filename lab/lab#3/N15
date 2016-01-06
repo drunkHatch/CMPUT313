@@ -1,0 +1,185 @@
+/* global attributes */
+
+/* default node attributes */
+compile                  = "lab3.c dll_basic.c nl_table.c"
+rebootfunc               = "reboot_node"
+nodemtbf                 = 0usec		/* will not fail */
+nodemttr                 = 0usec		/* instant repair */
+messagerate              = 1000000usec
+minmessagesize           = 48bytes
+maxmessagesize           = 32768bytes
+
+/* default WAN attributes */
+wan-bandwidth            = 56000bps
+wan-mtu                  = 33792bytes
+wan-jitter               = 0usec
+wan-propagationdelay     = 100000usec
+wan-linkmtbf             = 0usec		/* will not fail */
+wan-linkmttr             = 0usec		/* instant repair */
+wan-costperbyte          = 0
+wan-costperframe         = 0
+wan-probframecorrupt     = 0
+wan-probframeloss        = 1
+
+host host00 {
+    x=50, y=50
+
+    wan to host01 {	/* wan0 */
+    }
+}
+
+host host01 {
+    x=125, y=50
+
+    wan to host05 {	/* wan0 */
+    }
+    wan to host06 {	/* wan1 */
+    }
+    wan to host00 {	/* wan2 */
+    }
+    wan to host02 {	/* wan3 */
+    }
+}
+
+host host02 {
+    x=200, y=50
+
+    wan to host07 {	/* wan0 */
+    }
+    wan to host05 {	/* wan1 */
+    }
+    wan to host03 {	/* wan2 */
+    }
+    wan to host01 {	/* wan3 */
+    }
+}
+
+host host03 {
+    x=275, y=50
+
+    wan to host07 {	/* wan0 */
+    }
+    wan to host02 {	/* wan1 */
+    }
+}
+
+host host04 {
+    x=50, y=125
+
+    wan to host08 {	/* wan0 */
+    }
+    wan to host09 {	/* wan1 */
+    }
+}
+
+host host05 {
+    x=125, y=125
+
+    wan to host01 {	/* wan0 */
+    }
+    wan to host02 {	/* wan1 */
+    }
+    wan to host14 {	/* wan2 */
+    }
+    wan to host08 {	/* wan3 */
+    }
+}
+
+host host06 {
+    x=200, y=125
+
+    wan to host10 {	/* wan0 */
+    }
+    wan to host01 {	/* wan1 */
+    }
+    wan to host07 {	/* wan2 */
+    }
+}
+
+host host07 {
+    x=275, y=125
+
+    wan to host12 {	/* wan0 */
+    }
+    wan to host02 {	/* wan1 */
+    }
+    wan to host03 {	/* wan2 */
+    }
+    wan to host06 {	/* wan3 */
+    }
+}
+
+host host08 {
+    x=50, y=200
+
+    wan to host04 {	/* wan0 */
+    }
+    wan to host09 {	/* wan1 */
+    }
+    wan to host05 {	/* wan2 */
+    }
+}
+
+host host09 {
+    x=125, y=200
+
+    wan to host13 {	/* wan0 */
+    }
+    wan to host04 {	/* wan1 */
+    }
+    wan to host08 {	/* wan2 */
+    }
+    wan to host12 {	/* wan3 */
+    }
+}
+
+host host10 {
+    x=275, y=200
+
+    wan to host13 {	/* wan0 */
+    }
+    wan to host06 {	/* wan1 */
+    }
+    wan to host14 {	/* wan2 */
+    }
+}
+
+host host11 {
+    x=50, y=275
+
+    wan to host12 {	/* wan0 */
+    }
+}
+
+host host12 {
+    x=125, y=275
+
+    wan to host13 {	/* wan0 */
+    }
+    wan to host07 {	/* wan1 */
+    }
+    wan to host09 {	/* wan2 */
+    }
+    wan to host11 {	/* wan3 */
+    }
+}
+
+host host13 {
+    x=200, y=275
+
+    wan to host09 {	/* wan0 */
+    }
+    wan to host10 {	/* wan1 */
+    }
+    wan to host12 {	/* wan2 */
+    }
+}
+
+host host14 {
+    x=275, y=275
+
+    wan to host05 {	/* wan0 */
+    }
+    wan to host10 {	/* wan1 */
+    }
+}

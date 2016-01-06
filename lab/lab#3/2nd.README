@@ -1,0 +1,59 @@
+
+This directory also contains a couple of files to help plot statistics
+of the execution of the 3 flooding algorithms.
+The shellscript  getfloodstats :
+
+    #!/bin/sh
+    #
+    EVERY=5         # seconds
+    #
+    rm -f result.flood*
+    #
+    for f in 1 2 3
+    do
+        cnet -W -q -T -e 20mins -s -f ${EVERY}secs FLOODING$f  | \
+        grep 'Messages delivered'                              | \
+        cut -d: -f 2                                           | \
+        awk "{ printf(\"%d %s\n\", ++i * $EVERY, \$1); }"      > result.flood$f
+    done
+
+runs each implementation for 20 minutes of simulated time, and
+captures their statistics every 5 seconds in files named result.flood1,
+result.flood2....
+
+These files are then used by GNUPLOT to plot all statistics on one graph,
+using the GNUPLOT command file  plotfloodstats.gp :
+
+    #
+    set title "Comparison of 3 flooding protocols"
+    set xlabel "Running time (seconds)"
+    set ylabel "Messages delivered"
+    #
+    set grid
+    set yrange [0:]
+    #
+    plot        \
+            "result.flood1"  title "flooding1" with linespoints, \
+            "result.flood2"  title "flooding2" with linespoints, \
+            "result.flood3"  title "flooding3" with linespoints
+    #
+    pause -1
+
+Don't be concerned if both flooding1 and flooding2 terminate with the error:
+
+    Error while executing Melbourne, dll_basic.c, function down_to_datalink(), 
+    ER_TOOBUSY: Function is too busy/congested to handle request
+
+However, *do* try to understand why they report this.
+
+In combination, these two files plot the number of messages successfully
+delivered by each flooding implementation.  You may easily change the
+collated statistic by:
+
+    - editing the string 'Messages delivered' in getfloodstats
+      to, say, 'Efficiency', and
+    - editing the value of ylabel in plotfloodstats.gp
+
+
+--------------------------------------
+Chris McDonald (chris@csse.uwa.edu.au)
